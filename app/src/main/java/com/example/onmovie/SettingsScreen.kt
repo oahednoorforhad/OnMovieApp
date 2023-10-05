@@ -21,5 +21,4 @@ fun SettingsScreen(navController: NavHostController)
             fontSize = 30.sp
         )
     }
-
 }
