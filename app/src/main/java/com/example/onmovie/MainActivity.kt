@@ -90,118 +90,12 @@ fun Myapp(content: @Composable () -> Unit) {
 @Composable
 fun MainContent() {
     val navController = rememberNavController()
-
-    val items = listOf(
-        BottomNavigationItem(
-            title = "Home",
-            selectedIcon = Icons.Filled.Movie,
-            unselectedIcon = Icons.Outlined.Movie,
-            hasNews = false,
-            badgeCount = null,
-            route = "HomeScreen"
-        ),
-        BottomNavigationItem(
-            title = "Watch",
-            selectedIcon = Icons.Rounded.SmartDisplay,
-            unselectedIcon = Icons.Outlined.SmartDisplay,
-            hasNews = false,
-            badgeCount = 33,
-            route = "WatchScreen"
-
-        ),
-        BottomNavigationItem(
-            title = "Settings",
-            selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Outlined.Settings,
-            hasNews = true,
-            badgeCount = null,
-            route = "SettingsScreen"
-        )
-    )
-
-    var selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
-    }
-    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Movies") },
-                modifier = Modifier
-                    .offset(0.dp, 5.dp)
-                    .padding(4.dp)
-                    .clip(RoundedCornerShape(6.dp)),
-                colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = Color.Transparent),
-                navigationIcon = {
-                    IconButton(onClick = {
-                        when (currentRoute) {
-                            "HomeScreen", "WatchScreen", "SettingsScreen" -> {
-                               //TODO//
-                            }
-                            else -> {
-                                navController.popBackStack()
-                            }
-                        }
-                    }) {
-                        when (currentRoute) {
-                            "HomeScreen", "WatchScreen", "SettingsScreen" -> {
-                                Icon(imageVector = Icons.Default.Menu, contentDescription = null)
-                            }
-
-                            else -> {
-                                Icon(
-                                    imageVector = Icons.Default.ArrowBack,
-                                    contentDescription = null
-                                )
-                            }
-                        }
-                    }
-                }
-            )
-        },
-        bottomBar = {
-            NavigationBar {
-                items.forEachIndexed { index, item ->
-                    NavigationBarItem(
-                        selected = selectedItemIndex == index,
-                        onClick = {
-                            selectedItemIndex = index
-                            navController.navigate(item.route)
-                        },
-                        label = { Text(text = item.title) },
-                        icon = {
-                            BadgedBox(
-                                badge = {
-                                    if (item.badgeCount != null) {
-                                        Badge {
-                                            Text(text = item.badgeCount.toString())
-                                        }
-                                    } else if (item.hasNews) {
-                                        Badge()
-                                    }
-                                })
-                            {
-                                Icon(
-                                    imageVector = if (index == selectedItemIndex)
-                                        item.selectedIcon
-                                    else item.unselectedIcon,
-                                    contentDescription = item.title
-                                )
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    )
-    {
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
-            Nav(navController)
-        }
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+        //.padding(it)
+    ) {
+        Nav(navController)
     }
 }
 

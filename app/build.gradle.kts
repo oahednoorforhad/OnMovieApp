@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    
 }
 
 android {
@@ -72,4 +73,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.3")
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
+    //lottie
+    val lottieVersion = "6.1.0"
+    implementation ("com.airbnb.android:lottie-compose:$lottieVersion")
 }
